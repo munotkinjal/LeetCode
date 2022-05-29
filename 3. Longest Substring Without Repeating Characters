@@ -1,0 +1,27 @@
+public int LengthOfLongestSubstring(string s) {        
+    int start=0,end=0, longest = 0;
+    var hasSet= new HashSet<char>();
+    var stringLen = s.Length;
+   
+    if(stringLen ==0)
+       return 0; 
+    if(stringLen ==1)
+        return 1;
+    if(s.Trim().Length ==0)
+        return 1;
+        
+    while(end<s.Length)
+    {
+       char x = s[end];
+        while(hasSet.Contains(x))
+        {
+            hasSet.Remove(s[start]);
+            longest =Math.Max(end-start,longest);                
+            start++;
+        }
+       
+          hasSet.Add(x);      
+          end++;                       
+    }        
+    return Math.Max(end-start,longest);;
+}
